@@ -22,6 +22,10 @@ const {dbConnection} = require('./database/config')
 // Crear el servidor de express
 const app = express()
 
+// Solución Coont get/login
+const path = require('path');
+const publicPath = path.join(__dirname, '..', 'public');
+
 // Cors
 app.use(cors())
 // Base de Datos
@@ -46,3 +50,11 @@ app.use('/api/events', require('./routes/events'))
 app.listen(process.env.PORT, () => {
 	console.log(`Servidor corriendo en puerto ${process.env.PORT}`);
 })
+
+app.get('*', (req, res) => {
+	res.sendFile(path.join(publicPath, 'index.html')), function(err) {
+	if (err) {
+		res.status(500).send(err)
+		}
+	};
+});
