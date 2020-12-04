@@ -51,7 +51,7 @@ app.listen(process.env.PORT, () => {
 	console.log(`Servidor corriendo en puerto ${process.env.PORT}`);
 })
 
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
 	res.sendFile(path.join(publicPath, 'index.html')), function(err) {
 	if (err) {
 		res.status(500).send(err)
